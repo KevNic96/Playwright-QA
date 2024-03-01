@@ -1,6 +1,8 @@
 const { chromium } = require('playwright');
 const RegisterPage = require('../pages/RegisterPage');
-const { test, expect } = require('@playwright/test')
+const HomePage = require("../pages/HomePage.js");
+const { test, expect } = require('@playwright/test');
+const { beforeEach } = require('node:test');
 
 
 test.describe('Register tests', () => {
@@ -12,22 +14,20 @@ test.describe('Register tests', () => {
     registerPage = new RegisterPage(page);
   });
 
+  test.beforeEach(async ({page}) => {
+    await page.goto('/register')
+  })
+
   test.afterAll(async () => {
     await browser.close();
   });
 
   test('register with valid credentials', async ({ page }) => {
-    await page.goto(`/register`);
+    const registerPage = new RegisterPage(page);
+    const homePage = new HomePage(page);
   
-    // Fill all inputs with correct information
-    expect(page.registerSuccesfully().to)
-
-    // Expects page to have a heading with the name of Installation.
-    await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-  });
-  expect('should login successfully with valid credentials', async () => {
-    await loginPage.login('usuario', 'contraseña');
-    // Asegurar que el inicio de sesión fue exitoso
+    await registerPage.registerSuccessfully()
+    await expect(homePage.homeText).toBeVisible();
   });
 
 });

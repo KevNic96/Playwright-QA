@@ -7,8 +7,8 @@ module.exports = {
     name: 'John Doe',
     userName: 'newUser',
     email: 'newUser@mail.com',
-    password: 'fakePassword',
-    confirmPassword: 'fakePassword'
+    password: 'FakePassword1$',
+    confirmPassword: 'FakePassword1$'
   }
 };
   
