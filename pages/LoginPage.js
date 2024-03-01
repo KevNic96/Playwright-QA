@@ -8,9 +8,15 @@ class LoginPage {
     this.loginButton = page.getByRole('button', { name: 'Login'});
   }
 
-  async login(){
+  async loginSuccess(){
     await this.username.fill(credentials.validCredentials.username)
     await this.password.fill(credentials.validCredentials.password)
+    await this.loginButton.click()
+  }
+
+  async loginNonValid(){
+    await this.username.fill(credentials.nonValidLoginCredentials.username)
+    await this.password.fill(credentials.nonValidLoginCredentials.password)
     await this.loginButton.click()
   }
 
