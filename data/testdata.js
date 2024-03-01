@@ -9,8 +9,8 @@ module.exports = {
   },
   validRegisterCredentials: {
     name: 'John Doe',
-    userName: 'newUser',
-    email: 'newUser@mail.com',
+    userName: 'validUser',
+    email: 'validUser@mail.com',
     password: 'FakePassword1$',
     confirmPassword: 'FakePassword1$'
   }
