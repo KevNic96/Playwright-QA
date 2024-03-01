@@ -9,10 +9,7 @@ test.beforeEach(async({page})=>{
 test('User can login successfully', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const homePage = new HomePage(page);
-  await loginPage.login(
-    "Nico96",
-    "Password123!"
-);
+  await loginPage.login();
 
   await expect(homePage.homeText).toBeVisible();
 });

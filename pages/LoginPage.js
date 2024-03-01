@@ -8,7 +8,7 @@ class LoginPage {
     this.loginButton = page.getByRole('button', { name: 'Login'});
   }
 
-  async login({ username, password }){
+  async login(){
     await this.username.fill(credentials.validCredentials.username)
     await this.password.fill(credentials.validCredentials.password)
     await this.loginButton.click()
