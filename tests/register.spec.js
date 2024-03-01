@@ -6,11 +6,11 @@ const { beforeEach } = require('node:test');
 
 
 test.describe('Register tests', () => {
-  let browser, page, registerPage;
+  let browser, registerPage, homePage;
 
   test.beforeAll(async () => {
-    browser = await chromium.launch();
-    page = await browser.newPage();
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
     registerPage = new RegisterPage(page);
   });
 
@@ -22,12 +22,25 @@ test.describe('Register tests', () => {
     await browser.close();
   });
 
-  test('register with valid credentials', async ({ page }) => {
-    const registerPage = new RegisterPage(page);
-    const homePage = new HomePage(page);
-  
+  test('register with valid credentials', async ({ page }) => {  
     await registerPage.registerSuccessfully()
     await expect(homePage.homeText).toBeVisible();
   });
 
+  test('register with a already used email', async ({ page }) => {  
+    await registerPage.registerExistingUser()
+    await expect(registerPage.errorUserMessage).toBeVisible();
+  });
+
+  test('register with not valid password', async ({ page }) => {  
+    await registerPage.registerWithNotValidPassword()
+    await expect(registerPage.errorPasswordMessage).toBeVisible();
+  });
+
+  test('register with different password and confirmPassword', async ({ page }) => {  
+    await registerPage.registerWithADifferentConfirmPassword()
+    await expect(homePage.homeText).toBeVisible();
+  });
+
+  
 });
