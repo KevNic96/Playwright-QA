@@ -6,6 +6,8 @@ class LoginPage {
     this.username = page.getByLabel('Username', {exact: true});
     this.password = page.getByLabel('Password', {exact: true});
     this.loginButton = page.getByRole('button', { name: 'Login'});
+    this.notValidUser = page.getByLabel('Not found. Couldnt find any user');
+    this.notValidPass = page.getByLabel('Validation Error', {exact: true});
   }
 
   async loginSuccess(){
@@ -14,9 +16,15 @@ class LoginPage {
     await this.loginButton.click()
   }
 
-  async loginNonValid(){
-    await this.username.fill(credentials.nonValidLoginCredentials.username)
-    await this.password.fill(credentials.nonValidLoginCredentials.password)
+  async loginUserNonValid(){
+    await this.username.fill(credentials.nonValidLoginUserCredentials.username)
+    await this.password.fill(credentials.nonValidLoginUserCredentials.password)
+    await this.loginButton.click()
+  }
+
+  async loginPassNonValid() {
+    await this.username.fill(credentials.nonValidLoginPassCredentials.username)
+    await this.password.fill(credentials.nonValidLoginPassCredentials.password)
     await this.loginButton.click()
   }
 

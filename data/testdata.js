@@ -3,9 +3,13 @@ module.exports = {
     username: 'Nico96',
     password: 'Password123!'
   },
-  nonValidLoginCredentials: {
+  nonValidLoginPassCredentials: {
     username: 'Nico96',
     password: 'Password'
+  },
+  nonValidLoginUserCredentials: {
+    username: 'Nico',
+    password: 'Password123!'
   },
   validRegisterCredentials: {
     name: 'John Doe',
