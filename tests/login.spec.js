@@ -1,11 +1,19 @@
 const { test, expect } = require('@playwright/test');
 const LoginPage = require("../pages/LoginPage");
+const HomePage = require("../pages/HomePage.js")
 
-test('User can register successfully', async ({ page }) => {
+test.beforeEach(async({page})=>{
+  await page.goto("https://frontend-training-taupe.vercel.app/login")
+})
+
+test('User can login successfully', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  await loginPage.goto()
-  await loginPage.login({
-    username: 'Nico96',
-    password: 'Password123!',
-  })
+  const homePage = new HomePage(page);
+  await loginPage.login(
+    "Nico96",
+    "Password123!"
+);
+
+  await expect(homePage.homeText).toBeVisible();
 });
+
