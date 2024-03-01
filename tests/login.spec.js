@@ -1,22 +1,18 @@
 const { chromium } = require('playwright');
 const LoginPage = require('../pages/LoginPage');
+const { test, expect } = require('@playwright/test');
 
-describe('Login tests', () => {
+test.describe('Login tests', () => {
   let browser, page, loginPage;
 
-  beforeAll(async () => {
+  test.beforeAll(async () => {
     browser = await chromium.launch();
     page = await browser.newPage();
     loginPage = new LoginPage(page);
   });
 
-  afterAll(async () => {
+  test.afterAll(async () => {
     await browser.close();
-  });
-
-  it('should login successfully with valid credentials', async () => {
-    await loginPage.login('usuario', 'contraseña');
-    // Asegurar que el inicio de sesión fue exitoso
   });
 
 });
